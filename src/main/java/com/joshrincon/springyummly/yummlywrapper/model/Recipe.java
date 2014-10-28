@@ -1,5 +1,6 @@
 package com.joshrincon.springyummly.yummlywrapper.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Recipe {
 
     private Attributes attributes;

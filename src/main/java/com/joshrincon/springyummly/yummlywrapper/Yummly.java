@@ -16,8 +16,9 @@ import java.util.ArrayList;
 public class Yummly {
     private static final String BASE_URL = "http://api.yummly.com/v1/api/";
 
-    private String mAppId;
-    private String mAppKey;
+    // TODO: REMOVE THESE KEYS
+    private String mAppId  = "";
+    private String mAppKey = "";
 
     public SearchResult search(String query) throws IOException {
         return search(query, false, null, null, -1, null, null, false, false, null);
