@@ -15,16 +15,10 @@ import java.util.ArrayList;
 public class YummlyService {
 
     private Yummly yummly;
-    private Criteria criteria;
 
     @Autowired
     public void setYummly(Yummly yummly) {
         this.yummly = yummly;
-    }
-
-    @Autowired
-    public void setCriteria(Criteria criteria) {
-        this.criteria = criteria;
     }
 
     public Recipe getRecipe(String recipeName) {
@@ -40,9 +34,8 @@ public class YummlyService {
     public ArrayList<Recipe> getPopularRecipes(String keyword) {
         ArrayList<Recipe> popularRecipes;
         try {
-            criteria.setMaxResults(12);
-            SearchResult results = yummly.search(keyword, true);
-            popularRecipes = results.getMatches();
+
+            popularRecipes = yummly.search(keyword, true, 12).getMatches();
 
             // in future create a new pojo that gets medium/large images.
             // the way it is currently only shows small thumbnails when

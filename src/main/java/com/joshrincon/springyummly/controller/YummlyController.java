@@ -1,6 +1,7 @@
 package com.joshrincon.springyummly.controller;
 
 import com.joshrincon.springyummly.service.YummlyService;
+import com.joshrincon.springyummly.yummlywrapper.model.Criteria;
 import com.joshrincon.springyummly.yummlywrapper.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +20,21 @@ public class YummlyController {
         this.yummlyService = yummlyService;
     }
 
-    @RequestMapping("/search")
+    @RequestMapping("/")
+    //@RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
+
+        ArrayList<Recipe> popularRecipes;
+
+        popularRecipes = yummlyService.getPopularRecipes("popular");
+
+        model.addAttribute("popularRecipes", popularRecipes);
+
+        return "home";
+    }
+
+    @RequestMapping("/search")
+    public String searchYummly(ModelMap model) {
 
         ArrayList<Recipe> searchRecipes;
 

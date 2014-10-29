@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>4 Col Portfolio - Start Bootstrap Template</title>
+    <title>FutureMeals | Welcome</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
@@ -42,19 +42,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <a class="navbar-brand" href="#">futuremeals.me</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">About</a>
+                    <a href="#">about</a>
                 </li>
                 <li>
-                    <a href="#">Services</a>
+                    <a href="#">search</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="#">contact</a>
                 </li>
             </ul>
         </div>
@@ -69,8 +69,8 @@
     <!-- Page Heading -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Page Heading
-                <small>Secondary Text</small>
+            <h1 class="page-header">Popular Recipes
+                <small><%--Secondary Text--%></small>
             </h1>
         </div>
     </div>
@@ -78,21 +78,24 @@
 
     <c:forEach var="recipe" items="${popularRecipes}" varStatus="loopStatus">
         <c:set var="imageLink" value="${recipe.images}" />
-        <!-- Projects Row -->
         <c:if test="${loopStatus.count % 4 == 0}">
+        <!-- Projects Row -->
         <div class="row">
         </c:if>
-            <div class="col-md-3 portfolio-item">
-                <a href="#">
-                    <img class="img-thumbnail" src="${imageLink[0].hostedSmallUrl}" alt="" />
-                    <c:out value="${recipe.name}" /><br />
-                </a>
+            <div class="col-xs-3">
+                <div class="clearfix media">
+                    <a href="#">
+                        <img class="pull-left" src="${imageLink[0].hostedSmallUrl}" alt="" />
+                    </a>
+                    <div class="caption">
+                        <c:out value="${recipe.name}" />
+                    </div>
+                </div>
             </div>
         <c:if test="${loopStatus.count % 4 == 0}">
         </div>
-        </c:if>
         <!-- /.row -->
-    <c:set var="count" value="${count + 1}" scope="page" />
+        </c:if>
     </c:forEach>
 
     <hr>
@@ -129,11 +132,69 @@
 
     <hr>
 
+    <div class="container-fluid">
+    <!-- Projects Row -->
+    <div class="row row-centered">
+        <div class="col-centered">
+            <div class="input-group">
+                <div class="form-control">
+                    MONDAY
+                </div>
+            </div>
+        </div>
+        <div class="col-centered">
+            <div class="input-group">
+                <div class="form-control">
+                    TUESDAY
+                </div>
+            </div>
+        </div>
+        <div class="col-centered">
+            <div class="input-group">
+                <div class="form-control">
+                    WEDNESDAY
+                </div>
+            </div>
+        </div>
+        <div class="col-centered">
+            <div class="input-group">
+                <div class="form-control">
+                    THURSDAY
+                </div>
+            </div>
+        </div>
+        <div class="col-centered">
+            <div class="input-group">
+                <div class="form-control">
+                    FRIDAY
+                </div>
+            </div>
+        </div>
+        <div class="col-centered">
+            <div class="input-group">
+                <div class="form-control">
+                    SATURDAY
+                </div>
+            </div>
+        </div>
+        <div class="col-centered">
+            <div class="input-group">
+                <div class="form-control">
+                    SUNDAY
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+    </div>
+
+    <hr>
+
     <!-- Footer -->
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
+                <p>Copyright &copy; futuremeals.me 2014</p>
             </div>
         </div>
         <!-- /.row -->

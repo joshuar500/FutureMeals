@@ -3,6 +3,7 @@ package com.joshrincon.springyummly.yummlywrapper;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.joshrincon.springyummly.yummlywrapper.model.*;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 @Component("yummly")
+@Scope("prototype")
 public class Yummly {
     private static final String BASE_URL = "http://api.yummly.com/v1/api/";
 
@@ -21,7 +23,7 @@ public class Yummly {
     private String mAppKey = "";
 
     public SearchResult search(String query) throws IOException {
-        return search(query, false, null, null, -1, null, null, false, false, null);
+        return search(query, false, null, null, -1, null, null, false, false, null, 0);
     }
     /**
      * Searches for recipes matching a given query.
@@ -38,7 +40,12 @@ public class Yummly {
      */
     public SearchResult search(String query, boolean requirePictures)
             throws IOException {
-        return search(query, requirePictures, null, null, -1, null, null, false, false, null);
+        return search(query, requirePictures, null, null, -1, null, null, false, false, null, 0);
+    }
+
+    public SearchResult search(String query, boolean requirePictures, int maxResult)
+            throws IOException {
+        return search(query, requirePictures, null, null, -1, null, null, false, false, null, maxResult);
     }
     /**
      * Searches for recipes matching a given query.
@@ -63,6 +70,9 @@ public class Yummly {
      * @param dietFacetField
      * If true, the result will contain the total count of each
      * diet in the matched recipes.
+     * @param maxResult
+     * The maxResult and start parameters allow pagination
+     * and # of results control
      * @return The result of the search. Be aware that the the returned recipes
      * are sparse. Use the {@link #getRecipe(String)} method to receive
      * all available information.
@@ -74,7 +84,8 @@ public class Yummly {
                                ArrayList<String> excludedIngredients, int maxTotalTimeInSeconds,
                                Flavors minFlavors, Flavors maxFlavors,
                                boolean ingredientFacetField, boolean dietFacetField,
-                               ArrayList<NutritionRange> nutritionRanges)
+                               ArrayList<NutritionRange> nutritionRanges,
+                               int maxResult)
             throws IOException {
 // Set parameters.
         ArrayList<Parameter> params = new ArrayList<Parameter>();
@@ -166,6 +177,10 @@ public class Yummly {
                 params.add(new Parameter(URLEncoder.encode(
                         String.format("nutrition.%s.min", range.getNutrition().toString()), "utf8"), range.getMin().toString()));
             }
+        }
+        if (maxResult > 0) {
+            params.add(new Parameter("maxResult", Integer
+                    .toString(maxResult)));
         }
 // Perform search request.
         InputStream in = performRequest("recipes", params);
