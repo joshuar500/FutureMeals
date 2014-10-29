@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 
@@ -29,7 +28,7 @@ public class HomeController {
 
         ArrayList<Recipe> popularRecipes;
 
-        popularRecipes = yummlyService.getSearchRecipes("popular");
+        popularRecipes = yummlyService.getPopularRecipes("popular");
 
         model.addAttribute("popularRecipes", popularRecipes);
 

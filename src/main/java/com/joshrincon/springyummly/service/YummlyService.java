@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 @Service("yummlyService")
 public class YummlyService {
@@ -38,11 +37,26 @@ public class YummlyService {
         return null;
     }
 
-    public ArrayList<Recipe> getSearchRecipes(String keyword) {
+    public ArrayList<Recipe> getPopularRecipes(String keyword) {
+        ArrayList<Recipe> popularRecipes;
         try {
             criteria.setMaxResults(12);
             SearchResult results = yummly.search(keyword, true);
-            return results.getMatches();
+            popularRecipes = results.getMatches();
+
+            // in future create a new pojo that gets medium/large images.
+            // the way it is currently only shows small thumbnails when
+            // using search API. the recipes API has all the bigger images.
+            // also probably not a good idea to make too many api calls.
+            /*
+            List<String> recipeImages = new ArrayList<String>();
+
+            int count = 0;
+            for(Recipe recipe : popularRecipes) {
+                recipeImages.add(recipe.getImages().get(count).getHostedMediumUrl());
+            }
+            */
+            return popularRecipes;
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -2,13 +2,11 @@ package com.joshrincon.springyummly.controller;
 
 import com.joshrincon.springyummly.service.YummlyService;
 import com.joshrincon.springyummly.yummlywrapper.model.Recipe;
-import com.joshrincon.springyummly.yummlywrapper.model.SearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 @Controller
@@ -26,7 +24,7 @@ public class YummlyController {
 
         ArrayList<Recipe> searchRecipes;
 
-        searchRecipes = yummlyService.getSearchRecipes("soups");
+        searchRecipes = yummlyService.getPopularRecipes("soups");
         model.addAttribute("searchRecipes", searchRecipes);
 
         return "search";

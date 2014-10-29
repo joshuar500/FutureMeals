@@ -84,7 +84,7 @@
         </c:if>
             <div class="col-md-3 portfolio-item">
                 <a href="#">
-                    <img class="img-responsive" src="${imageLink[loopStatus.count].hostedSmallUrl}" alt="">
+                    <img class="img-thumbnail" src="${imageLink[0].hostedSmallUrl}" alt="" />
                     <c:out value="${recipe.name}" /><br />
                 </a>
             </div>
@@ -92,6 +92,7 @@
         </div>
         </c:if>
         <!-- /.row -->
+    <c:set var="count" value="${count + 1}" scope="page" />
     </c:forEach>
 
     <hr>
