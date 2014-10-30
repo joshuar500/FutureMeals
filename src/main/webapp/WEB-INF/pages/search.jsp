@@ -9,5 +9,6 @@
 <c:forEach var="recipe" items="${searchRecipes}">
     <c:out value="${recipe.name}" /><br />
 </c:forEach>
+
 </body>
 </html>

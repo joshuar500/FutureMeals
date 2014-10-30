@@ -1,7 +1,6 @@
 package com.joshrincon.springyummly.controller;
 
 import com.joshrincon.springyummly.service.YummlyService;
-import com.joshrincon.springyummly.yummlywrapper.model.Criteria;
 import com.joshrincon.springyummly.yummlywrapper.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,5 +52,10 @@ public class YummlyController {
         model.addAttribute("recipe", recipe);
 
         return "recipes";
+    }
+
+    @RequestMapping("/test")
+    public String showTest() {
+        return "test";
     }
 }

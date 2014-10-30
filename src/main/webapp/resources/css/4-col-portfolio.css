@@ -28,3 +28,8 @@ footer {
     /* inline-block space fix */
     margin-right:-4px;
 }
+
+.ui-state-highlight {
+    background: #333;
+    color: #ffffff;
+}

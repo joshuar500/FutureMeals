@@ -14,11 +14,27 @@
 
     <title>FutureMeals | Welcome</title>
 
+    <!-- jQuery Version 1.11.0 -->
+    <script src="${pageContext.request.contextPath}/static/js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
+
+    <!-- Touch Punch UI JavaScript -->
+    <script src="${pageContext.request.contextPath}/static/js/touch-punch.js"></script>
+
+    <!-- JQuery UI JavaScript -->
+    <script src="${pageContext.request.contextPath}/static/js/jquery-ui.js"></script>
+
+
     <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="${pageContext.request.contextPath}/static/css/4-col-portfolio.css" rel="stylesheet">
+
+    <!-- JQuery UI CSS -->
+    <link href="${pageContext.request.contextPath}/static/css/jquery-ui.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,6 +42,24 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        .draggable { background: #eee; }
+        .droppable { }
+    </style>
+    <script>
+        $(function() {
+            $( ".draggable" ).draggable();
+            $( ".droppable" ).droppable({
+                drop: function( event, ui ) {
+                    $( this )
+                            .addClass( "ui-state-highlight" )
+                            .find( "p" )
+                            .html( "Dropped!" );
+                }
+            });
+        });
+    </script>
 
 </head>
 
@@ -65,7 +99,6 @@
 
 <!-- Page Content -->
 <div class="container">
-
     <!-- Page Heading -->
     <div class="row">
         <div class="col-lg-12">
@@ -83,12 +116,12 @@
         <div class="row">
         </c:if>
             <div class="col-xs-3">
-                <div class="clearfix media">
+                <div class="draggable clearfix media">
                     <a href="#">
                         <img class="pull-left" src="${imageLink[0].hostedSmallUrl}" alt="" />
                     </a>
                     <div class="caption">
-                        <c:out value="${recipe.name}" />
+                        <p><c:out value="${recipe.name}" /></p>
                     </div>
                 </div>
             </div>
@@ -135,57 +168,29 @@
     <div class="container-fluid">
     <!-- Projects Row -->
     <div class="row row-centered">
-        <div class="col-centered">
-            <div class="input-group">
-                <div class="form-control">
-                    MONDAY
+        <div class="col-lg-1 col-centered">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <input id="z" class="droppable form-control" value="MONDAY" />
+                    <input id="a" class="form-control" value="TUESDAY" />
+                    <input id="b" class="form-control" value="WEDNESDAY" />
+                    <input id="c" class="form-control" value="THURSDAY" />
+                    <input id="d" class="form-control" value="FRIDAY" />
+                    <input id="e" class="form-control" value="SATURDAY" />
+                    <input id="f" class="form-control" value="SUNDAY" />
                 </div>
-            </div>
-        </div>
-        <div class="col-centered">
-            <div class="input-group">
-                <div class="form-control">
-                    TUESDAY
-                </div>
-            </div>
-        </div>
-        <div class="col-centered">
-            <div class="input-group">
-                <div class="form-control">
-                    WEDNESDAY
-                </div>
-            </div>
-        </div>
-        <div class="col-centered">
-            <div class="input-group">
-                <div class="form-control">
-                    THURSDAY
-                </div>
-            </div>
-        </div>
-        <div class="col-centered">
-            <div class="input-group">
-                <div class="form-control">
-                    FRIDAY
-                </div>
-            </div>
-        </div>
-        <div class="col-centered">
-            <div class="input-group">
-                <div class="form-control">
-                    SATURDAY
-                </div>
-            </div>
-        </div>
-        <div class="col-centered">
-            <div class="input-group">
-                <div class="form-control">
-                    SUNDAY
-                </div>
-            </div>
+            </form>
         </div>
     </div>
     <!-- /.row -->
+    </div>
+
+    <div id="draggable" class="ui-widget-content">
+        <p>Drag me to my target</p>
+    </div>
+
+    <div class="droppable ui-widget-header">
+        <p>Drop here</p>
     </div>
 
     <hr>
@@ -202,12 +207,6 @@
 
 </div>
 <!-- /.container -->
-
-<!-- jQuery Version 1.11.0 -->
-<script src="${pageContext.request.contextPath}/static/js/jquery-1.11.0.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
 
 </body>
 
