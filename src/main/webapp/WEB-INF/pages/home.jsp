@@ -49,15 +49,29 @@
     </style>
     <script>
         $(function() {
-            $( ".draggable" ).draggable();
-            $( ".droppable" ).droppable({
-                drop: function( event, ui ) {
-                    $( this )
-                            .addClass( "ui-state-highlight" )
-                            .find( "p" )
-                            .html( "Dropped!" );
-                }
+            $( ".draggable" ).draggable({
+                revert: "invalid",
+                helper: "clone"
             });
+            $( "#mon, #tue, #wed, #thu, #fri, #sat, #sun" ).droppable({
+                accept: ".media",
+                drop: Drop
+            });
+
+            function Drop(event, ui) {
+                var draggableId = ui.draggable.attr("id");
+                var droppableId = $(this).attr("id");
+                $( this )
+                        .addClass( "ui-state-highlight" )
+                        .find( "p" )
+                        .html( droppableId );
+                updateForm(draggableId, droppableId);
+            }
+
+            function updateForm(draggableId, droppableId) {
+                $("#id_"+droppableId).val($("#id_"+droppableId).val() + "."+draggableId + ",");
+                console.log($("#id_mon").attr("value"));
+            }
         });
     </script>
 
@@ -116,7 +130,7 @@
         <div class="row">
         </c:if>
             <div class="col-xs-3">
-                <div class="draggable clearfix media">
+                <div id="${recipe.id}" class="draggable clearfix media" style="cursor: pointer;">
                     <a href="#">
                         <img class="pull-left" src="${imageLink[0].hostedSmallUrl}" alt="" />
                     </a>
@@ -165,32 +179,73 @@
 
     <hr>
 
+    <form action="/saveCollection" method="post" id="saveWeekForm" autocomplete="off">
+    <input id="id_name" maxlength="128" name="name" type="hidden" value="Future Plan" />
+    <input id="id_collection_id" name="collection_id" type="hidden">
+    <input id="id_mon" type="hidden" name="mon" value="" />
+    <input id="id_tue" type="hidden" name="tue" value="" />
+    <input id="id_wed" type="hidden" name="wed" value="" />
+    <input id="id_thu" type="hidden" name="thu" value="" />
+    <input id="id_fri" type="hidden" name="fri" value="" />
+    <input id="id_sat" type="hidden" name="sat" value="" />
+    <input id="id_sun" type="hidden" name="sun" value="" />
+    <input type="submit" value="save" style="display: none" />
+    </form>
+
     <div class="container-fluid">
     <!-- Projects Row -->
     <div class="row row-centered">
-        <div class="col-lg-1 col-centered">
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <input id="z" class="droppable form-control" value="MONDAY" />
-                    <input id="a" class="form-control" value="TUESDAY" />
-                    <input id="b" class="form-control" value="WEDNESDAY" />
-                    <input id="c" class="form-control" value="THURSDAY" />
-                    <input id="d" class="form-control" value="FRIDAY" />
-                    <input id="e" class="form-control" value="SATURDAY" />
-                    <input id="f" class="form-control" value="SUNDAY" />
+        <div class="col-centered">
+            <div class="form-group">
+                <div id="mon" class="droppable form-control">
+                    <p>MONDAY</p>
                 </div>
-            </form>
+            </div>
+        </div>
+        <div class="col-centered">
+            <div class="form-group">
+                <div id="tue" class="droppable form-control">
+                    <p>TUESDAY</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-centered">
+            <div class="form-group">
+                <div id="wed"  class="droppable form-control">
+                    <p>WEDNESDAY</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-centered">
+            <div class="form-group">
+                <div id="thu"  class="droppable form-control">
+                    <p>THURSDAY</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-centered">
+            <div class="form-group">
+                <div id="fri"  class="droppable form-control">
+                    <p>FRIDAY</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-centered">
+            <div class="form-group">
+                <div id="sat"  class="droppable form-control">
+                    <p>SATURDAY</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-centered">
+            <div class="form-group">
+                <div id="sun"  class="droppable form-control">
+                    <p>SUNDAY</p>
+                </div>
+            </div>
         </div>
     </div>
     <!-- /.row -->
-    </div>
-
-    <div id="draggable" class="ui-widget-content">
-        <p>Drag me to my target</p>
-    </div>
-
-    <div class="droppable ui-widget-header">
-        <p>Drop here</p>
     </div>
 
     <hr>
