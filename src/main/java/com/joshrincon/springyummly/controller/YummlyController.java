@@ -1,11 +1,14 @@
 package com.joshrincon.springyummly.controller;
 
+import com.joshrincon.springyummly.dao.WeeklyRecipes;
 import com.joshrincon.springyummly.service.YummlyService;
 import com.joshrincon.springyummly.yummlywrapper.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 
@@ -43,7 +46,7 @@ public class YummlyController {
         return "search";
     }
 
-    @RequestMapping("/showRecipes")
+    @RequestMapping("/showrecipes")
     public String showRecipes(ModelMap model) {
 
         Recipe recipe;

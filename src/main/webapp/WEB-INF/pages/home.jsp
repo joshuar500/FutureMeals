@@ -179,18 +179,18 @@
 
     <hr>
 
-    <form action="/saveCollection" method="post" id="saveWeekForm" autocomplete="off">
-    <input id="id_name" maxlength="128" name="name" type="hidden" value="Future Plan" />
-    <input id="id_collection_id" name="collection_id" type="hidden">
-    <input id="id_mon" type="hidden" name="mon" value="" />
-    <input id="id_tue" type="hidden" name="tue" value="" />
-    <input id="id_wed" type="hidden" name="wed" value="" />
-    <input id="id_thu" type="hidden" name="thu" value="" />
-    <input id="id_fri" type="hidden" name="fri" value="" />
-    <input id="id_sat" type="hidden" name="sat" value="" />
-    <input id="id_sun" type="hidden" name="sun" value="" />
+    <form action="${pageContext.request.contextPath}/savecollection" method="post" id="saveWeekForm" autocomplete="off">
+    <input id="id_name" maxlength="128" name="name" type="hidden" value="Future Plan" path="name" />
+    <input id="id_collection_id" name="collectionId" type="hidden" path="collectionId" />
+    <input id="id_mon" type="hidden" name="mon" value="" path="mon"/>
+    <input id="id_tue" type="hidden" name="tue" value="" path="tue"/>
+    <input id="id_wed" type="hidden" name="wed" value="" path="wed"/>
+    <input id="id_thu" type="hidden" name="thu" value="" path="thu"/>
+    <input id="id_fri" type="hidden" name="fri" value="" path="fri"/>
+    <input id="id_sat" type="hidden" name="sat" value="" path="sat"/>
+    <input id="id_sun" type="hidden" name="sun" value="" path="sun"/>
     <input type="submit" value="save" style="display: none" />
-    </form>
+    <form>
 
     <div class="container-fluid">
     <!-- Projects Row -->
