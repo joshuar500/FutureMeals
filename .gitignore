@@ -48,3 +48,4 @@ com_crashlytics_export_strings.xml
 
 
 src/main/webapp/WEB-INF/application.properties
+src/main/webapp/WEB-INF/yummly.properties

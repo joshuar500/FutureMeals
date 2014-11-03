@@ -1,12 +1,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jee="http://www.springframework.org/schema/jee"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
 
     <context:component-scan base-package="com.joshrincon.springyummly"/>
+
+    <context:property-placeholder location="WEB-INF/yummly.properties" />
 
     <mvc:resources mapping="/static/**" location="/resources/"/>
 
@@ -16,5 +18,8 @@
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!--This will create the bean to be autowired for weeklyRecipeDao-->
+    <jee:jndi-lookup jndi-name="jdbc/springfuturemeals" id="dataSource" expected-type="javax.sql.DataSource"></jee:jndi-lookup>
 
 </beans>

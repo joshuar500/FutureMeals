@@ -3,6 +3,9 @@ package com.joshrincon.springyummly.yummlywrapper;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.joshrincon.springyummly.yummlywrapper.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +21,20 @@ import java.util.ArrayList;
 public class Yummly {
     private static final String BASE_URL = "http://api.yummly.com/v1/api/";
 
-    // TODO: REMOVE THESE KEYS
     private String mAppId  = "";
     private String mAppKey = "";
+
+    // Sets @mAppId & @mAppKey via a yummly.properties file
+
+    @Autowired
+    public void setmAppId(@Value("${yummly.appid}") String mAppId) {
+        this.mAppId = mAppId;
+    }
+
+    @Autowired
+    public void setmAppKey(@Value("${yummly.appkey}") String mAppKey) {
+        this.mAppKey = mAppKey;
+    }
 
     public SearchResult search(String query) throws IOException {
         return search(query, false, null, null, -1, null, null, false, false, null, 0);

@@ -179,19 +179,6 @@
 
     <hr>
 
-    <form action="${pageContext.request.contextPath}/savecollection" method="post" id="saveWeekForm" autocomplete="off">
-    <input id="id_name" maxlength="128" name="name" type="hidden" value="Future Plan" path="name" />
-    <input id="id_collection_id" name="collectionId" type="hidden" path="collectionId" />
-    <input id="id_mon" type="hidden" name="mon" value="" path="mon"/>
-    <input id="id_tue" type="hidden" name="tue" value="" path="tue"/>
-    <input id="id_wed" type="hidden" name="wed" value="" path="wed"/>
-    <input id="id_thu" type="hidden" name="thu" value="" path="thu"/>
-    <input id="id_fri" type="hidden" name="fri" value="" path="fri"/>
-    <input id="id_sat" type="hidden" name="sat" value="" path="sat"/>
-    <input id="id_sun" type="hidden" name="sun" value="" path="sun"/>
-    <input type="submit" value="save" style="display: none" />
-    <form>
-
     <div class="container-fluid">
     <!-- Projects Row -->
     <div class="row row-centered">
@@ -244,9 +231,34 @@
                 </div>
             </div>
         </div>
+        <div class="col-centered">
+            <div class="form-group">
+                <div id="weekRecipeForm"  class="droppable form-control">
+                    <sf:form action="${pageContext.request.contextPath}/savecollection" method="post" id="saveWeekForm" autocomplete="off" commandName="weeklyRecipe">
+                        <sf:input id="id" name="id" type="hidden" path="id" />
+                        <sf:input id="id_mon" type="hidden" name="id_mon" value="" path="mon"/>
+                        <sf:input id="id_tue" type="hidden" name="id_tue" value="" path="tue"/>
+                        <sf:input id="id_wed" type="hidden" name="id_wed" value="" path="wed"/>
+                        <sf:input id="id_thu" type="hidden" name="id_thu" value="" path="thu"/>
+                        <sf:input id="id_fri" type="hidden" name="id_fri" value="" path="fri"/>
+                        <sf:input id="id_sat" type="hidden" name="id_sat" value="" path="sat"/>
+                        <sf:input id="id_sun" type="hidden" name="id_sun" value="" path="sun"/>
+                        <input type="submit" value="save" />
+                    </sf:form>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- /.row -->
     </div>
+
+    <c:forEach var="weekRecipe" items="${weeklyRecipeList}">
+            <c:out value="${weekRecipe.id}}" />
+            <c:out value="${weekRecipe.id_mon}}" />
+            <c:out value="${weekRecipe.id_tue}}" />
+            <c:out value="${weekRecipe.id_wed}}" />
+            <c:out value="${weekRecipe.id_thu}}" />
+    </c:forEach>
 
     <hr>
 

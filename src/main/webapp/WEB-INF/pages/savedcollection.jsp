@@ -5,8 +5,8 @@
     <title></title>
 </head>
 <body>
-
-<%--<c:set var="recipe" value="${weeklyRecipes}" />
+collection saved!
+<%--<c:set var="recipe" value="${weeklyRecipe}" />
 <c:out value="${recipe.mon}" /><br />
 <c:out value="${recipe.tue}" /><br />
 <c:out value="${recipe.wed}" /><br />
