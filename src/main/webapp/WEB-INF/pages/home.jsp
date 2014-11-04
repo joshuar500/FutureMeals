@@ -234,15 +234,15 @@
         <div class="col-centered">
             <div class="form-group">
                 <div id="weekRecipeForm"  class="droppable form-control">
-                    <sf:form action="${pageContext.request.contextPath}/savecollection" method="post" id="saveWeekForm" autocomplete="off" commandName="weeklyRecipe">
+                    <sf:form action="${pageContext.request.contextPath}/savecollection" method="post" autocomplete="off" commandName="weeklyRecipe">
                         <sf:input id="id" name="id" type="hidden" path="id" />
-                        <sf:input id="id_mon" type="hidden" name="id_mon" value="" path="mon"/>
-                        <sf:input id="id_tue" type="hidden" name="id_tue" value="" path="tue"/>
-                        <sf:input id="id_wed" type="hidden" name="id_wed" value="" path="wed"/>
-                        <sf:input id="id_thu" type="hidden" name="id_thu" value="" path="thu"/>
-                        <sf:input id="id_fri" type="hidden" name="id_fri" value="" path="fri"/>
-                        <sf:input id="id_sat" type="hidden" name="id_sat" value="" path="sat"/>
-                        <sf:input id="id_sun" type="hidden" name="id_sun" value="" path="sun"/>
+                        <sf:input id="id_mon" type="hidden" name="id_mon" value="" path="id_mon"/>
+                        <sf:input id="id_tue" type="hidden" name="id_tue" value="" path="id_tue"/>
+                        <sf:input id="id_wed" type="hidden" name="id_wed" value="" path="id_wed"/>
+                        <sf:input id="id_thu" type="hidden" name="id_thu" value="" path="id_thu"/>
+                        <sf:input id="id_fri" type="hidden" name="id_fri" value="" path="id_fri"/>
+                        <sf:input id="id_sat" type="hidden" name="id_sat" value="" path="id_sat"/>
+                        <sf:input id="id_sun" type="hidden" name="id_sun" value="" path="id_sun"/>
                         <input type="submit" value="save" />
                     </sf:form>
                 </div>

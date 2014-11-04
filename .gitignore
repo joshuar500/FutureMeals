@@ -46,6 +46,5 @@ atlassian-ide-plugin.xml
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
 
-
-src/main/webapp/WEB-INF/application.properties
+WEB-INF/yummly.properties
 src/main/webapp/WEB-INF/yummly.properties

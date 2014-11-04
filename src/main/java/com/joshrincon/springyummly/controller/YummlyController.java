@@ -36,6 +36,11 @@ public class YummlyController {
     //@RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
 
+        // create an object with an attribute "weeklyRecipe" for
+        // the form / commandName
+
+        model.addAttribute("weeklyRecipe", new WeeklyRecipe());
+
         List<WeeklyRecipe> weeklyRecipeList = weeklyRecipeService.getAllWeeks();
 
         model.addAttribute("weeklyRecipeList", weeklyRecipeList);
