@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.springapp</groupId>
-    <artifactId>SpringYummly</artifactId>
+    <artifactId>FutureMeals</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>SpringYummly</name>
+    <name>FutureMeals</name>
 
     <properties>
         <spring.version>3.2.6.RELEASE</spring.version>
@@ -119,6 +119,12 @@
 
         <dependency>
             <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.2.1.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>5.1.3.Final</version>
         </dependency>
@@ -126,7 +132,7 @@
     </dependencies>
 
     <build>
-        <finalName>SpringYummly</finalName>
+        <finalName>FutureMeals</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
