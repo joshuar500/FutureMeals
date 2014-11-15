@@ -85,7 +85,7 @@ public class YummlyController {
 
         weeklyRecipeService.create(weeklyRecipe);
 
-        return "savedcollection";
+        return "collectionsaved";
     }
 
     @RequestMapping("/test")

@@ -2,9 +2,7 @@ package com.joshrincon.springyummly.service;
 
 
 import com.joshrincon.springyummly.yummlywrapper.Yummly;
-import com.joshrincon.springyummly.yummlywrapper.model.Criteria;
 import com.joshrincon.springyummly.yummlywrapper.model.Recipe;
-import com.joshrincon.springyummly.yummlywrapper.model.SearchResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

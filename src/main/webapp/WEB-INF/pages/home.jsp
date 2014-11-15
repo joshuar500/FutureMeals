@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,13 +97,28 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">about</a>
+                    <sec:authorize access="!isAuthenticated()">
+                        <a href="${pageContext.request.contextPath}/login">login</a>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <a href="<c:url value='/j_spring_security_logout' />">logout</a>
+                    </sec:authorize>
+                </li>
+                <li>
+                    <sec:authorize access="!isAuthenticated()">
+                        <a href="${pageContext.request.contextPath}/register">register</a>
+                    </sec:authorize>
                 </li>
                 <li>
                     <a href="#">search</a>
                 </li>
                 <li>
                     <a href="#">contact</a>
+                </li>
+                <li>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <a href="<c:url value='/admin' />">Admin</a>
+                    </sec:authorize>
                 </li>
             </ul>
         </div>
