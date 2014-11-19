@@ -25,15 +25,19 @@
         <!--admin-->
         <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
         <!--user-->
-        <security:intercept-url pattern="/recipe" access="isAuthenticated" />
-        <security:intercept-url pattern="/search" access="isAuthenticated" />
+        <security:intercept-url pattern="/recipe" access="hasRole('ROLE_USER')" />
+        <security:intercept-url pattern="/search" access="hasRole('ROLE_USER')" />
+        <security:intercept-url pattern="/search" access="hasRole('ROLE_USER')" />
+        <security:intercept-url pattern="/results" access="hasRole('ROLE_USER')" />
+        <security:intercept-url pattern="/showrecipes" access="hasRole('ROLE_USER')" />
         <!--everybody-->
+        <security:intercept-url pattern="/loggedout" access="permitAll" />
         <security:intercept-url pattern="/register" access="permitAll" />
         <security:intercept-url pattern="/login" access="permitAll" />
         <security:intercept-url pattern="/static/**" access="permitAll" />
         <security:intercept-url pattern="/" access="permitAll" />
         <!--deny everything as default-->
-        <security:intercept-url pattern="/**" access="denyAll" />
+        <security:intercept-url pattern="/." access="denyAll" />
         <security:intercept-url pattern="/WEB-INF" access="denyAll" />
         <!--login/logout functionality-->
         <security:form-login login-page="/login" authentication-failure-url="/login?error=true" />

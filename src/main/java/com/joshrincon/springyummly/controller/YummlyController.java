@@ -1,5 +1,6 @@
 package com.joshrincon.springyummly.controller;
 
+import com.joshrincon.springyummly.SearchTerm;
 import com.joshrincon.springyummly.dao.WeeklyRecipe;
 import com.joshrincon.springyummly.service.WeeklyRecipeService;
 import com.joshrincon.springyummly.service.YummlyService;
@@ -47,7 +48,7 @@ public class YummlyController {
 
         ArrayList<Recipe> popularRecipes;
 
-        popularRecipes = yummlyService.getPopularRecipes("popular");
+        popularRecipes = yummlyService.search("popular");
 
         model.addAttribute("popularRecipes", popularRecipes);
 
@@ -57,12 +58,21 @@ public class YummlyController {
     @RequestMapping("/search")
     public String searchYummly(ModelMap model) {
 
-        ArrayList<Recipe> searchRecipes;
-
-        searchRecipes = yummlyService.getPopularRecipes("soups");
-        model.addAttribute("searchRecipes", searchRecipes);
+        model.addAttribute("search", new SearchTerm());
 
         return "search";
+    }
+
+    @RequestMapping(value = "/results", method = RequestMethod.POST)
+    public String results(ModelMap model, SearchTerm term) {
+
+        ArrayList<Recipe> results;
+
+        results = yummlyService.search(term.getTerm());
+
+        model.addAttribute("results", results);
+
+        return "results";
     }
 
     @RequestMapping("/showrecipes")
@@ -71,6 +81,7 @@ public class YummlyController {
         Recipe recipe;
 
         recipe = yummlyService.getRecipe("Hot-Turkey-Salad-Sandwiches-Allrecipes");
+
         model.addAttribute("recipe", recipe);
 
         return "recipes";

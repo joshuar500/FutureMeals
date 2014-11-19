@@ -29,7 +29,7 @@ public class YummlyService {
         return null;
     }
 
-    public ArrayList<Recipe> getPopularRecipes(String keyword) {
+    public ArrayList<Recipe> search(String keyword) {
         ArrayList<Recipe> popularRecipes;
         try {
 
