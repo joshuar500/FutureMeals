@@ -87,6 +87,8 @@ public class YummlyController {
         return "recipes";
     }
 
+
+    /*****
     @RequestMapping(value = "/savecollection", method = RequestMethod.POST)
     public String saveCollection(Model model, @Valid WeeklyRecipe weeklyRecipe, BindingResult result) {
 
@@ -94,9 +96,33 @@ public class YummlyController {
             return "home";
         }
 
+        return "collectionsaved";
+    }
+    *****/
+
+    @RequestMapping(value = "/savecollection", method = RequestMethod.POST)
+    public String getRecipeIngredients(Model model, @Valid WeeklyRecipe weeklyRecipe, BindingResult result) {
+
+        // what if the recipe doesn't have ingredients?
+        // ie what if it's an advertisement?
+
+        if(result.hasErrors()) {
+            return "home";
+        }
+
+        // save collection names to the database
         weeklyRecipeService.create(weeklyRecipe);
 
-        return "collectionsaved";
+        // regex all periods and commas. search for recipes and get ingredients
+        String pattern = "([./,])";
+
+        String monRecipe = weeklyRecipe.getId_mon().replaceAll(pattern, "");
+
+        System.out.println("monRecipe: " + yummlyService.getIngredients(monRecipe));
+
+        // return grocery list
+        return "grocerylist";
+
     }
 
     @RequestMapping("/test")

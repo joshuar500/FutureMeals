@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service("yummlyService")
 public class YummlyService {
@@ -35,6 +36,7 @@ public class YummlyService {
 
             popularRecipes = yummly.search(keyword, true, 12).getMatches();
 
+            // ****** BELOW COMMENT IS NO LONGER POSSIBLE ******* //
             // in future create a new pojo that gets medium/large images.
             // the way it is currently only shows small thumbnails when
             // using search API. the recipes API has all the bigger images.
@@ -53,6 +55,21 @@ public class YummlyService {
         }
         // TODO: DON'T RETURN NULL?
         return null;
+    }
+
+    public List<String> getIngredients(String term) {
+
+        Recipe recipe;
+
+        try {
+            recipe = yummly.getRecipe(term);
+            return recipe.getIngredientLines();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
     }
 
 }

@@ -24,4 +24,5 @@ public class WeeklyRecipeService {
     public void create(WeeklyRecipe weeklyRecipe) {
         weeklyRecipeDAO.create(weeklyRecipe);
     }
+
 }
