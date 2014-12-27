@@ -111,14 +111,23 @@ public class YummlyController {
         }
 
         // save collection names to the database
-        weeklyRecipeService.create(weeklyRecipe);
+        // weeklyRecipeService.create(weeklyRecipe);
 
         // regex all periods and commas. search for recipes and get ingredients
         String pattern = "([./,])";
 
-        String monRecipe = weeklyRecipe.getId_mon().replaceAll(pattern, "");
+        String[] monList = weeklyRecipe.getId_mon().split(",");
 
-        System.out.println("monRecipe: " + yummlyService.getIngredients(monRecipe));
+        List[] groceryList = new ArrayList[monList.length];
+
+        int i = 0;
+        for(String monRecipe : monList) {
+            System.out.println(monRecipe);
+            groceryList[i] = yummlyService.getIngredients(monRecipe.replaceAll(pattern, ""));
+            i++;
+        }
+
+        model.addAttribute("groceryList", groceryList);
 
         // return grocery list
         return "grocerylist";
