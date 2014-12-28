@@ -1,0 +1,37 @@
+# weight
+ounce,
+pound,
+pounds,
+grams,
+g,
+oz,
+gram,
+ounces,
+package,
+inch,
+#dry
+pint,
+quart,
+tsp,
+tbsp,
+peck,
+bushel,
+Dash,
+pinch,
+smidgen,
+clove
+slice
+#fluid
+drop,
+teaspoon,
+tablespoon,
+fluid ounce,
+jigger,
+gill,
+cup,
+pint,
+fifth,
+quart,
+ml
+gallon,
+l

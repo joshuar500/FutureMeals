@@ -33,6 +33,7 @@
         <!--everybody-->
         <security:intercept-url pattern="/loggedout" access="permitAll" />
         <security:intercept-url pattern="/register" access="permitAll" />
+        <security:intercept-url pattern="/savecollection" access="permitAll" />
         <security:intercept-url pattern="/login" access="permitAll" />
         <security:intercept-url pattern="/static/**" access="permitAll" />
         <security:intercept-url pattern="/" access="permitAll" />

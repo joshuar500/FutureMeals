@@ -57,19 +57,11 @@ public class YummlyService {
         return null;
     }
 
-    public List<String> getIngredients(String term) {
-
+    public List<String> getIngredients(String term) throws IOException{
         Recipe recipe;
 
-        try {
-            recipe = yummly.getRecipe(term);
-            return recipe.getIngredientLines();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-
+        recipe = yummly.getRecipe(term);
+        return recipe.getIngredientLines();
     }
 
 }

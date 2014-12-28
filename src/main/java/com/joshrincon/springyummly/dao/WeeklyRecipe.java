@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 public class WeeklyRecipe {
 
     private int id;
-    @Size(min = 5, max = 100)
+    @Size(min = 5, max = 800)
     private String id_mon;
     private String id_tue;
     private String id_wed;

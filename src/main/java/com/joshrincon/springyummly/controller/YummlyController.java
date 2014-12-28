@@ -2,6 +2,8 @@ package com.joshrincon.springyummly.controller;
 
 import com.joshrincon.springyummly.SearchTerm;
 import com.joshrincon.springyummly.dao.WeeklyRecipe;
+import com.joshrincon.springyummly.recipeParser.recipeModels.RecipeP;
+import com.joshrincon.springyummly.service.IngredientService;
 import com.joshrincon.springyummly.service.WeeklyRecipeService;
 import com.joshrincon.springyummly.service.YummlyService;
 import com.joshrincon.springyummly.yummlywrapper.model.Recipe;
@@ -10,10 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +26,7 @@ public class YummlyController {
 
     private YummlyService yummlyService;
     private WeeklyRecipeService weeklyRecipeService;
+    private IngredientService ingredientService;
 
     @Autowired
     public void setYummlyService(YummlyService yummlyService) {
@@ -31,6 +36,11 @@ public class YummlyController {
     @Autowired
     public void setWeeklyRecipeService(WeeklyRecipeService weeklyRecipeService) {
         this.weeklyRecipeService = weeklyRecipeService;
+    }
+
+    @Autowired
+    public void setIngredientService(IngredientService ingredientService) {
+        this.ingredientService = ingredientService;
     }
 
     @RequestMapping("/")
@@ -87,19 +97,6 @@ public class YummlyController {
         return "recipes";
     }
 
-
-    /*****
-    @RequestMapping(value = "/savecollection", method = RequestMethod.POST)
-    public String saveCollection(Model model, @Valid WeeklyRecipe weeklyRecipe, BindingResult result) {
-
-        if(result.hasErrors()) {
-            return "home";
-        }
-
-        return "collectionsaved";
-    }
-    *****/
-
     @RequestMapping(value = "/savecollection", method = RequestMethod.POST)
     public String getRecipeIngredients(Model model, @Valid WeeklyRecipe weeklyRecipe, BindingResult result) {
 
@@ -107,6 +104,10 @@ public class YummlyController {
         // ie what if it's an advertisement?
 
         if(result.hasErrors()) {
+            for (ObjectError error : result.getAllErrors()) {
+                // change this to Logger in the future
+                System.out.println(error.toString());
+            }
             return "home";
         }
 
@@ -118,14 +119,22 @@ public class YummlyController {
 
         String[] monList = weeklyRecipe.getId_mon().split(",");
 
-        List[] groceryList = new ArrayList[monList.length];
+        List<List<String>> groceryList = new ArrayList<List<String>>();
 
         int i = 0;
         for(String monRecipe : monList) {
             System.out.println(monRecipe);
-            groceryList[i] = yummlyService.getIngredients(monRecipe.replaceAll(pattern, ""));
+            try {
+                groceryList.add(i, yummlyService.getIngredients(monRecipe.replaceAll(pattern, "")));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             i++;
         }
+
+        RecipeP demIngredients = ingredientService.getDemIngredients(groceryList);
+
+        demIngredients.getIngredients();
 
         model.addAttribute("groceryList", groceryList);
 
